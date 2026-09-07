@@ -1,0 +1,728 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>珮璇老師｜教師工具箱</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family:
+            "Noto Sans TC",
+            "Microsoft JhengHei",
+            Arial,
+            sans-serif;
+        background: #f8f6f1;
+        color: #4f4a45;
+    }
+
+    /* ===== 頁首 ===== */
+
+    header {
+        padding: 55px 20px 35px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 38px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        color: #99918a;
+        letter-spacing: 1px;
+    }
+
+    /* ===== 搜尋 ===== */
+
+    .search-box {
+        width: min(650px, 90%);
+        margin: 10px auto 45px;
+        position: relative;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 16px 22px 16px 50px;
+        border: none;
+        outline: none;
+        border-radius: 50px;
+        background: white;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        font-size: 16px;
+        color: #555;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 14px;
+        font-size: 20px;
+    }
+
+    /* ===== 主內容 ===== */
+
+    main {
+        width: min(1100px, 92%);
+        margin: auto;
+        padding-bottom: 70px;
+    }
+
+    .category {
+        margin-bottom: 42px;
+    }
+
+    .category-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+
+    .category-title span {
+        font-size: 27px;
+    }
+
+    /* ===== 卡片 ===== */
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 16px;
+    }
+
+    .card {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        background: white;
+        border-radius: 20px;
+        padding: 22px;
+
+        min-height: 125px;
+
+        box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.09);
+    }
+
+    .card-icon {
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+
+    .card-name {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .card-description {
+        font-size: 13px;
+        color: #9a938c;
+        line-height: 1.5;
+    }
+
+    /* ===== 最愛按鈕 ===== */
+
+    .favorite {
+        position: absolute;
+        right: 15px;
+        top: 13px;
+
+        border: none;
+        background: transparent;
+        cursor: pointer;
+
+        font-size: 20px;
+        opacity: 0.35;
+    }
+
+    .favorite.active {
+        opacity: 1;
+    }
+
+    /* ===== 教材子分類 ===== */
+
+    .sub-title {
+        margin: 5px 0 15px;
+        font-size: 16px;
+        color: #817970;
+        font-weight: 700;
+    }
+
+    .sub-section {
+        margin-bottom: 25px;
+    }
+
+    /* ===== 找不到結果 ===== */
+
+    #noResult {
+        display: none;
+        text-align: center;
+        padding: 40px;
+        color: #aaa;
+    }
+
+    /* ===== 頁尾 ===== */
+
+    footer {
+        text-align: center;
+        color: #aaa;
+        font-size: 13px;
+        padding: 20px;
+    }
+
+    /* ===== 手機 ===== */
+
+    @media (max-width: 600px) {
+
+        header {
+            padding-top: 35px;
+        }
+
+        .title {
+            font-size: 28px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+        }
+
+        .cards {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .card {
+            padding: 17px;
+            min-height: 115px;
+            border-radius: 16px;
+        }
+
+        .card-icon {
+            font-size: 25px;
+        }
+
+        .card-name {
+            font-size: 16px;
+        }
+
+        .card-description {
+            font-size: 12px;
+        }
+
+        .category-title {
+            font-size: 20px;
+        }
+    }
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="title">
+        🌷 珮璇老師的教學首頁
+    </div>
+
+    <div class="subtitle">
+        TEACHER'S TOOLBOX
+    </div>
+
+</header>
+
+
+<!-- 搜尋 -->
+
+<div class="search-box">
+
+    <div class="search-icon">🔍</div>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="搜尋工具、教材或網站..."
+        onkeyup="searchCards()"
+    >
+
+</div>
+
+
+<main>
+
+    <!-- ========================= -->
+    <!-- 聯絡簿 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>📖</span>
+            聯絡簿
+        </div>
+
+        <div class="cards">
+
+            <a
+                href="https://example.com"
+                target="_blank"
+                class="card"
+                data-keywords="聯絡簿 作業 每日"
+            >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(event,this)"
+                >☆</button>
+
+                <div class="card-icon">📝</div>
+
+                <div class="card-name">
+                    班級聯絡簿
+                </div>
+
+                <div class="card-description">
+                    查看每日作業與通知事項
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 獎勵 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>🏆</span>
+            獎勵
+        </div>
+
+        <div class="cards">
+
+            <a
+                href="https://example.com"
+                target="_blank"
+                class="card"
+                data-keywords="獎勵 點數 班級"
+            >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(event,this)"
+                >☆</button>
+
+                <div class="card-icon">⭐</div>
+
+                <div class="card-name">
+                    班級獎勵
+                </div>
+
+                <div class="card-description">
+                    班級點數與獎勵管理
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 每日檢核 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>✅</span>
+            每日檢核
+        </div>
+
+        <div class="cards">
+
+            <a
+                href="https://example.com"
+                target="_blank"
+                class="card"
+                data-keywords="每日檢核 作業 整潔 常規"
+            >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(event,this)"
+                >☆</button>
+
+                <div class="card-icon">📋</div>
+
+                <div class="card-name">
+                    每日檢核
+                </div>
+
+                <div class="card-description">
+                    每日作業、整潔與常規檢查
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 抽籤 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>🎲</span>
+            抽籤
+        </div>
+
+        <div class="cards">
+
+            <a
+                href="https://example.com"
+                target="_blank"
+                class="card"
+                data-keywords="抽籤 隨機 選號 分組"
+            >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(event,this)"
+                >☆</button>
+
+                <div class="card-icon">🎯</div>
+
+                <div class="card-name">
+                    隨機抽籤
+                </div>
+
+                <div class="card-description">
+                    隨機抽學生、分組或選號
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 教學教材 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>📚</span>
+            教學教材
+        </div>
+
+
+        <!-- 國語 -->
+
+        <div class="sub-section">
+
+            <div class="sub-title">
+                📖 國語
+            </div>
+
+            <div class="cards">
+
+                <a
+                    href="https://example.com"
+                    target="_blank"
+                    class="card"
+                    data-keywords="國語 國語文 教材"
+                >
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,this)"
+                    >☆</button>
+
+                    <div class="card-icon">📖</div>
+
+                    <div class="card-name">
+                        國語教材
+                    </div>
+
+                    <div class="card-description">
+                        國語教學相關資源
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 數學 -->
+
+        <div class="sub-section">
+
+            <div class="sub-title">
+                🔢 數學
+            </div>
+
+            <div class="cards">
+
+                <a
+                    href="https://example.com"
+                    target="_blank"
+                    class="card"
+                    data-keywords="數學 數學教材"
+                >
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,this)"
+                    >☆</button>
+
+                    <div class="card-icon">🔢</div>
+
+                    <div class="card-name">
+                        數學教材
+                    </div>
+
+                    <div class="card-description">
+                        數學教學相關資源
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- 彈性 -->
+
+        <div class="sub-section">
+
+            <div class="sub-title">
+                💡 彈性
+            </div>
+
+            <div class="cards">
+
+                <a
+                    href="https://example.com"
+                    target="_blank"
+                    class="card"
+                    data-keywords="彈性 課程 綜合活動 教材"
+                >
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,this)"
+                    >☆</button>
+
+                    <div class="card-icon">💡</div>
+
+                    <div class="card-name">
+                        彈性課程
+                    </div>
+
+                    <div class="card-description">
+                        彈性課程與補充教材
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- 其他 -->
+    <!-- ========================= -->
+
+    <section class="category">
+
+        <div class="category-title">
+            <span>📂</span>
+            其他
+        </div>
+
+        <div class="cards">
+
+            <a
+                href="https://example.com"
+                target="_blank"
+                class="card"
+                data-keywords="其他 工具 教師"
+            >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(event,this)"
+                >☆</button>
+
+                <div class="card-icon">🛠️</div>
+
+                <div class="card-name">
+                    其他工具
+                </div>
+
+                <div class="card-description">
+                    其他教師常用工具
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <div id="noResult">
+        找不到符合的連結 🔍
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 珮璇老師的教學工具箱
+</footer>
+
+
+<script>
+
+    /* =========================
+       搜尋功能
+    ========================= */
+
+    function searchCards() {
+
+        const input =
+            document.getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+        const cards =
+            document.querySelectorAll(".card");
+
+        let found = 0;
+
+        cards.forEach(card => {
+
+            const text =
+                (
+                    card.innerText +
+                    " " +
+                    card.dataset.keywords
+                ).toLowerCase();
+
+            if (text.includes(input)) {
+
+                card.style.display = "block";
+                found++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+        /* 隱藏沒有結果的分類 */
+
+        document.querySelectorAll(".category").forEach(category => {
+
+            const visibleCards =
+                category.querySelectorAll(
+                    ".card[style='display: block;']"
+                );
+
+            if (input === "") {
+
+                category.style.display = "block";
+
+            } else if (visibleCards.length === 0) {
+
+                category.style.display = "none";
+
+            } else {
+
+                category.style.display = "block";
+
+            }
+
+        });
+
+        document.getElementById("noResult").style.display =
+            found === 0 ? "block" : "none";
+    }
+
+
+    /* =========================
+       最愛收藏
+    ========================= */
+
+    function toggleFavorite(event, button) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        button.classList.toggle("active");
+
+        if (button.classList.contains("active")) {
+
+            button.innerText = "★";
+
+        } else {
+
+            button.innerText = "☆";
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
+```
