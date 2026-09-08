@@ -2,245 +2,384 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>珮璇老師｜教師工具箱</title>
-
+<title>珮璇老師的教學首頁</title>
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        margin: 0;
-        font-family:
-            "Noto Sans TC",
-            "Microsoft JhengHei",
-            Arial,
-            sans-serif;
-        background: #f8f6f1;
-        color: #4f4a45;
-    }
+/* ==============================
+   基本設定
+============================== */
 
-    /* ===== 頁首 ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        Arial,
+        sans-serif;
+
+    background: #f8f6f1;
+
+    color: #514c47;
+}
+
+
+/* ==============================
+   頁首
+============================== */
+
+header {
+    text-align: center;
+
+    padding:
+        55px 20px 35px;
+}
+
+.title {
+    font-size: 38px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+
+    color: #9a928a;
+
+    letter-spacing: 2px;
+}
+
+
+/* ==============================
+   搜尋框
+============================== */
+
+.search-box {
+
+    width: min(650px, 90%);
+
+    margin:
+        5px auto 45px;
+
+    position: relative;
+}
+
+.search-box input {
+
+    width: 100%;
+
+    padding:
+        16px 22px 16px 50px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 50px;
+
+    background: white;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.06);
+
+    font-size: 16px;
+
+    color: #555;
+}
+
+.search-box input::placeholder {
+    color: #aaa;
+}
+
+.search-icon {
+
+    position: absolute;
+
+    left: 20px;
+
+    top: 13px;
+
+    font-size: 21px;
+}
+
+
+/* ==============================
+   主內容
+============================== */
+
+main {
+
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding-bottom: 70px;
+}
+
+
+/* ==============================
+   大分類
+============================== */
+
+.category {
+
+    margin-bottom: 45px;
+}
+
+.category-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.category-title span {
+    font-size: 28px;
+}
+
+
+/* ==============================
+   卡片
+============================== */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px, 1fr)
+        );
+
+    gap: 16px;
+}
+
+.card {
+
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    min-height: 125px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.09);
+}
+
+.card-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 12px;
+}
+
+.card-name {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.card-description {
+
+    font-size: 13px;
+
+    color: #99918a;
+
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   教材區域
+============================== */
+
+.subject {
+
+    margin-bottom: 35px;
+}
+
+.subject-title {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color: #716961;
+
+    margin-bottom: 15px;
+
+    padding-left: 5px;
+}
+
+
+/* ==============================
+   搜尋無結果
+============================== */
+
+#noResult {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 50px;
+
+    color: #aaa;
+
+    font-size: 15px;
+}
+
+
+/* ==============================
+   頁尾
+============================== */
+
+footer {
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    padding: 20px;
+}
+
+
+/* ==============================
+   手機版
+============================== */
+
+@media (max-width: 600px) {
 
     header {
-        padding: 55px 20px 35px;
-        text-align: center;
+
+        padding-top: 35px;
     }
 
     .title {
-        font-size: 38px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-bottom: 8px;
+
+        font-size: 28px;
     }
 
     .subtitle {
-        font-size: 15px;
-        color: #99918a;
-        letter-spacing: 1px;
+
+        font-size: 12px;
     }
-
-    /* ===== 搜尋 ===== */
-
-    .search-box {
-        width: min(650px, 90%);
-        margin: 10px auto 45px;
-        position: relative;
-    }
-
-    .search-box input {
-        width: 100%;
-        padding: 16px 22px 16px 50px;
-        border: none;
-        outline: none;
-        border-radius: 50px;
-        background: white;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-        font-size: 16px;
-        color: #555;
-    }
-
-    .search-icon {
-        position: absolute;
-        left: 20px;
-        top: 14px;
-        font-size: 20px;
-    }
-
-    /* ===== 主內容 ===== */
-
-    main {
-        width: min(1100px, 92%);
-        margin: auto;
-        padding-bottom: 70px;
-    }
-
-    .category {
-        margin-bottom: 42px;
-    }
-
-    .category-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 18px;
-    }
-
-    .category-title span {
-        font-size: 27px;
-    }
-
-    /* ===== 卡片 ===== */
 
     .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 16px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
     }
 
     .card {
-        position: relative;
-        display: block;
-        text-decoration: none;
-        color: inherit;
 
-        background: white;
-        border-radius: 20px;
-        padding: 22px;
+        padding: 17px;
 
-        min-height: 125px;
+        min-height: 115px;
 
-        box-shadow: 0 5px 18px rgba(0,0,0,0.05);
-
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.09);
+        border-radius: 16px;
     }
 
     .card-icon {
-        font-size: 30px;
-        margin-bottom: 12px;
+
+        font-size: 25px;
     }
 
     .card-name {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 6px;
+
+        font-size: 16px;
     }
 
     .card-description {
-        font-size: 13px;
-        color: #9a938c;
-        line-height: 1.5;
+
+        font-size: 12px;
     }
 
-    /* ===== 最愛按鈕 ===== */
-
-    .favorite {
-        position: absolute;
-        right: 15px;
-        top: 13px;
-
-        border: none;
-        background: transparent;
-        cursor: pointer;
+    .category-title {
 
         font-size: 20px;
-        opacity: 0.35;
     }
 
-    .favorite.active {
-        opacity: 1;
+    .subject-title {
+
+        font-size: 17px;
     }
 
-    /* ===== 教材子分類 ===== */
+}
 
-    .sub-title {
-        margin: 5px 0 15px;
-        font-size: 16px;
-        color: #817970;
-        font-weight: 700;
+
+/* ==============================
+   很小的手機
+============================== */
+
+@media (max-width: 380px) {
+
+    .cards {
+
+        grid-template-columns: 1fr;
     }
 
-    .sub-section {
-        margin-bottom: 25px;
-    }
+}
 
-    /* ===== 找不到結果 ===== */
-
-    #noResult {
-        display: none;
-        text-align: center;
-        padding: 40px;
-        color: #aaa;
-    }
-
-    /* ===== 頁尾 ===== */
-
-    footer {
-        text-align: center;
-        color: #aaa;
-        font-size: 13px;
-        padding: 20px;
-    }
-
-    /* ===== 手機 ===== */
-
-    @media (max-width: 600px) {
-
-        header {
-            padding-top: 35px;
-        }
-
-        .title {
-            font-size: 28px;
-        }
-
-        .subtitle {
-            font-size: 13px;
-        }
-
-        .cards {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .card {
-            padding: 17px;
-            min-height: 115px;
-            border-radius: 16px;
-        }
-
-        .card-icon {
-            font-size: 25px;
-        }
-
-        .card-name {
-            font-size: 16px;
-        }
-
-        .card-description {
-            font-size: 12px;
-        }
-
-        .category-title {
-            font-size: 20px;
-        }
-    }
 </style>
+
 </head>
 
 
 <body>
+
+
+<!-- =================================
+     頁首
+================================= -->
 
 <header>
 
@@ -255,11 +394,15 @@
 </header>
 
 
-<!-- 搜尋 -->
+<!-- =================================
+     搜尋
+================================= -->
 
 <div class="search-box">
 
-    <div class="search-icon">🔍</div>
+    <div class="search-icon">
+        🔍
+    </div>
 
     <input
         type="text"
@@ -271,457 +414,1018 @@
 </div>
 
 
+<!-- =================================
+     主內容
+================================= -->
+
 <main>
 
-    <!-- ========================= -->
-    <!-- 聯絡簿 -->
-    <!-- ========================= -->
 
-    <section class="category">
+<!-- =================================
+     聯絡簿
+================================= -->
 
-        <div class="category-title">
-            <span>📖</span>
-            聯絡簿
-        </div>
+<section class="category">
 
-        <div class="cards">
+    <div class="category-title">
 
-            <a
-                href="https://tpatty-2025.github.io/homework/"
-                target="_blank"
-                class="card"
-                data-keywords="聯絡簿 作業 每日"
-            >
+        <span>📖</span>
 
-                <button
-                    class="favorite"
-                    onclick="toggleFavorite(event,this)"
-                >☆</button>
+        聯絡簿
 
-                <div class="card-icon">📝</div>
-
-                <div class="card-name">
-                    班級聯絡簿
-                </div>
-
-                <div class="card-description">
-                    查看每日作業與通知事項
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- 獎勵 -->
-    <!-- ========================= -->
-
-    <section class="category">
-
-        <div class="category-title">
-            <span>🏆</span>
-            獎勵
-        </div>
-
-        <div class="cards">
-
-            <a
-                href="https://tpatty-2025.github.io/502award/"
-                target="_blank"
-                class="card"
-                data-keywords="獎勵 點數 班級"
-            >
-
-                <button
-                    class="favorite"
-                    onclick="toggleFavorite(event,this)"
-                >☆</button>
-
-                <div class="card-icon">⭐</div>
-
-                <div class="card-name">
-                    班級獎勵
-                </div>
-
-                <div class="card-description">
-                    班級點數與獎勵管理
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- 每日檢核 -->
-    <!-- ========================= -->
-
-    <section class="category">
-
-        <div class="category-title">
-            <span>✅</span>
-            每日任務
-        </div>
-
-        <div class="cards">
-
-            <a
-                href="https://tpatty-2025.github.io/502morning/"
-                target="_blank"
-                class="card"
-                data-keywords="每日任務 作業 打掃"
-            >
-
-                <button
-                    class="favorite"
-                    onclick="toggleFavorite(event,this)"
-                >☆</button>
-
-                <div class="card-icon">📋</div>
-
-                <div class="card-name">
-                    每日任務
-                </div>
-
-                <div class="card-description">
-                    每日作業、打掃
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- 抽籤 -->
-    <!-- ========================= -->
-
-    <section class="category">
-
-        <div class="category-title">
-            <span>🎲</span>
-            抽籤
-        </div>
-
-        <div class="cards">
-
-            <a
-                href="https://tpatty-2025.github.io/502number/"
-                target="_blank"
-                class="card"
-                data-keywords="抽籤 隨機 選號 分組"
-            >
-
-                <button
-                    class="favorite"
-                    onclick="toggleFavorite(event,this)"
-                >☆</button>
-
-                <div class="card-icon">🎯</div>
-
-                <div class="card-name">
-                    隨機抽籤
-                </div>
-
-                <div class="card-description">
-                    隨機抽學生、分組或選號
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- 教學教材 -->
-    <!-- ========================= -->
-
-    <section class="category">
-
-        <div class="category-title">
-            <span>📚</span>
-            教學教材
-        </div>
-
-
-        <!-- 國語 -->
-
-        <div class="sub-section">
-
-            <div class="sub-title">
-                📖 國語
-            </div>
-
-            <div class="cards">
-
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    class="card"
-                    data-keywords="國語 國語文 教材"
-                >
-
-                    <button
-                        class="favorite"
-                        onclick="toggleFavorite(event,this)"
-                    >☆</button>
-
-                    <div class="card-icon">📖</div>
-
-                    <div class="card-name">
-                        國語教材
-                    </div>
-
-                    <div class="card-description">
-                        國語教學相關資源
-                    </div>
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- 數學 -->
-
-        <div class="sub-section">
-
-            <div class="sub-title">
-                🔢 數學
-            </div>
-
-            <div class="cards">
-
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    class="card"
-                    data-keywords="數學 數學教材"
-                >
-
-                    <button
-                        class="favorite"
-                        onclick="toggleFavorite(event,this)"
-                    >☆</button>
-
-                    <div class="card-icon">🔢</div>
-
-                    <div class="card-name">
-                        數學教材
-                    </div>
-
-                    <div class="card-description">
-                        數學教學相關資源
-                    </div>
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- 彈性 -->
-
-        <div class="sub-section">
-
-            <div class="sub-title">
-                💡 彈性
-            </div>
-
-            <div class="cards">
-
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    class="card"
-                    data-keywords="彈性 課程 綜合活動 教材"
-                >
-
-                    <button
-                        class="favorite"
-                        onclick="toggleFavorite(event,this)"
-                    >☆</button>
-
-                    <div class="card-icon">💡</div>
-
-                    <div class="card-name">
-                        彈性課程
-                    </div>
-
-                    <div class="card-description">
-                        彈性課程與補充教材
-                    </div>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================= -->
-    <!-- 其他 -->
-    <!-- ========================= -->
-
-    <section class="category">
-
-        <div class="category-title">
-            <span>📂</span>
-            其他
-        </div>
-
-        <div class="cards">
-
-            <a
-                href="https://example.com"
-                target="_blank"
-                class="card"
-                data-keywords="其他 工具 教師"
-            >
-
-                <button
-                    class="favorite"
-                    onclick="toggleFavorite(event,this)"
-                >☆</button>
-
-                <div class="card-icon">🛠️</div>
-
-                <div class="card-name">
-                    其他工具
-                </div>
-
-                <div class="card-description">
-                    其他教師常用工具
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <div id="noResult">
-        找不到符合的連結 🔍
     </div>
+
+
+    <div class="cards">
+
+
+        <!-- 聯絡簿 1 -->
+
+        <a
+            href="https://tpatty-2025.github.io/homework/"
+            target="_blank"
+            class="card"
+            data-keywords="聯絡簿"
+        >
+
+            <div class="card-icon">
+                📝
+            </div>
+
+            <div class="card-name">
+                班級聯絡簿
+            </div>
+
+            <div class="card-description">
+                查看每日作業與通知事項
+            </div>
+
+        </a>
+
+
+        <!-- 如果要增加聯絡簿連結，
+             複製上面的 a 區塊即可 -->
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     獎勵
+================================= -->
+
+<section class="category">
+
+    <div class="category-title">
+
+        <span>🏆</span>
+
+        獎勵
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <a
+            href="https://tpatty-2025.github.io/502award/"
+            target="_blank"
+            class="card"
+            data-keywords="獎勵 點數 班級獎勵"
+        >
+
+            <div class="card-icon">
+                ⭐
+            </div>
+
+            <div class="card-name">
+                班級獎勵
+            </div>
+
+            <div class="card-description">
+                班級點數與獎勵管理
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     每日檢核
+================================= -->
+
+<section class="category">
+
+    <div class="category-title">
+
+        <span>✅</span>
+
+        每日檢核
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <a
+            href="https://tpatty-2025.github.io/502morning/"
+            target="_blank"
+            class="card"
+            data-keywords="每日檢核 作業 整潔"
+        >
+
+            <div class="card-icon">
+                📋
+            </div>
+
+            <div class="card-name">
+                每日檢核
+            </div>
+
+            <div class="card-description">
+                每日作業、整潔
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     抽籤
+================================= -->
+
+<section class="category">
+
+    <div class="category-title">
+
+        <span>🎲</span>
+
+        抽籤
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <a
+            href="https://tpatty-2025.github.io/502number/"
+            target="_blank"
+            class="card"
+            data-keywords="抽籤 隨機 選號 分組"
+        >
+
+            <div class="card-icon">
+                🎯
+            </div>
+
+            <div class="card-name">
+                隨機抽籤
+            </div>
+
+            <div class="card-description">
+                隨機抽學生、選號或分組
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     教學教材
+================================= -->
+
+<section class="category">
+
+    <div class="category-title">
+
+        <span>📚</span>
+
+        教學教材
+
+    </div>
+
+
+
+    <!-- ==============================
+         國語
+    =============================== -->
+
+    <div class="subject">
+
+        <div class="subject-title">
+            📖 國語
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- 第一課 -->
+
+            <a
+                href="https://canva.link/l3ivfkyhjbj8hq0"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第一課成語"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第一課
+                </div>
+
+                <div class="card-description">
+                    國語第一課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第二課 -->
+
+            <a
+                href="https://canva.link/vkdudgoudxaxq46"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第二課成語"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第二課
+                </div>
+
+                <div class="card-description">
+                    國語第二課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第三課 -->
+
+            <a
+                href="你的國語第三課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第三課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第三課
+                </div>
+
+                <div class="card-description">
+                    國語第三課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第四課 -->
+
+            <a
+                href="你的國語第四課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第四課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第四課
+                </div>
+
+                <div class="card-description">
+                    國語第四課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第五課 -->
+
+            <a
+                href="你的國語第五課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第五課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第五課
+                </div>
+
+                <div class="card-description">
+                    國語第五課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第六課 -->
+
+            <a
+                href="你的國語第六課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第六課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第六課
+                </div>
+
+                <div class="card-description">
+                    國語第六課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第七課 -->
+
+            <a
+                href="你的國語第七課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第七課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第七課
+                </div>
+
+                <div class="card-description">
+                    國語第七課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第八課 -->
+
+            <a
+                href="你的國語第八課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第八課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第八課
+                </div>
+
+                <div class="card-description">
+                    國語第八課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第九課 -->
+
+            <a
+                href="你的國語第九課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第九課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第九課
+                </div>
+
+                <div class="card-description">
+                    國語第九課教材
+                </div>
+
+            </a>
+
+
+            <!-- 第十課 -->
+
+            <a
+                href="你的國語第十課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第十課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第十課
+                </div>
+
+                <div class="card-description">
+                    國語第十課教材
+                </div>
+
+            </a>
+
+           <!-- 第十一課 -->
+
+            <a
+                href="你的國語第十一課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第十一課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第十一課
+                </div>
+
+                <div class="card-description">
+                    國語第十一課教材
+                </div>
+
+            </a>
+
+           <!-- 第十二課 -->
+
+            <a
+                href="你的國語第十二課網址"
+                target="_blank"
+                class="card"
+                data-keywords="國語 第十二課"
+            >
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div class="card-name">
+                    第十二課
+                </div>
+
+                <div class="card-description">
+                    國語第十二課教材
+                </div>
+
+            </a>
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         數學
+    =============================== -->
+
+    <div class="subject">
+
+        <div class="subject-title">
+            🔢 數學
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- 第一單元 -->
+
+            <a
+                href="https://gemini.google.com/share/55d78ee72d8e?skid=216b4c47-fec1-469f-ab0b-b8b764fdf8d8"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第一單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第一單元
+                </div>
+
+                <div class="card-description">
+                    數學第一單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第二單元 -->
+
+            <a
+                href="你的數學第二單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第二單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第二單元
+                </div>
+
+                <div class="card-description">
+                    數學第二單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第三單元 -->
+
+            <a
+                href="你的數學第三單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第三單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第三單元
+                </div>
+
+                <div class="card-description">
+                    數學第三單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第四單元 -->
+
+            <a
+                href="你的數學第四單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第四單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第四單元
+                </div>
+
+                <div class="card-description">
+                    數學第四單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第五單元 -->
+
+            <a
+                href="你的數學第五單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第五單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第五單元
+                </div>
+
+                <div class="card-description">
+                    數學第五單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第六單元 -->
+
+            <a
+                href="你的數學第六單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第六單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第六單元
+                </div>
+
+                <div class="card-description">
+                    數學第六單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第七單元 -->
+
+            <a
+                href="你的數學第七單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第七單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第七單元
+                </div>
+
+                <div class="card-description">
+                    數學第七單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第八單元 -->
+
+            <a
+                href="你的數學第八單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第八單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第八單元
+                </div>
+
+                <div class="card-description">
+                    數學第八單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第九單元 -->
+
+            <a
+                href="你的數學第九單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第九單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第九單元
+                </div>
+
+                <div class="card-description">
+                    數學第九單元教材
+                </div>
+
+            </a>
+
+
+            <!-- 第十單元 -->
+
+            <a
+                href="你的數學第十單元網址"
+                target="_blank"
+                class="card"
+                data-keywords="數學 第十單元"
+            >
+
+                <div class="card-icon">
+                    🔢
+                </div>
+
+                <div class="card-name">
+                    第十單元
+                </div>
+
+                <div class="card-description">
+                    數學第十單元教材
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         彈性
+    =============================== -->
+
+    <div class="subject">
+
+        <div class="subject-title">
+            💡 彈性
+        </div>
+
+
+        <div class="cards">
+
+
+            <a
+                href="你的彈性課程網址"
+                target="_blank"
+                class="card"
+                data-keywords="彈性 彈性課程 教材"
+            >
+
+                <div class="card-icon">
+                    💡
+                </div>
+
+                <div class="card-name">
+                    彈性課程
+                </div>
+
+                <div class="card-description">
+                    彈性課程與補充教材
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =================================
+     其他
+================================= -->
+
+<section class="category">
+
+    <div class="category-title">
+
+        <span>📂</span>
+
+        其他
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <a
+            href="你的其他工具網址"
+            target="_blank"
+            class="card"
+            data-keywords="其他 工具 教師"
+        >
+
+            <div class="card-icon">
+                🛠️
+            </div>
+
+            <div class="card-name">
+                其他工具
+            </div>
+
+            <div class="card-description">
+                其他教師常用工具
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- 搜尋沒有結果 -->
+
+<div id="noResult">
+    找不到符合的連結 🔍
+</div>
+
 
 </main>
 
 
+<!-- =================================
+     頁尾
+================================= -->
+
 <footer>
+
     © 2026 珮璇老師的教學工具箱
+
 </footer>
+
 
 
 <script>
 
-    /* =========================
-       搜尋功能
-    ========================= */
+/* =================================
+   搜尋功能
+================================= */
 
-    function searchCards() {
+function searchCards() {
 
-        const input =
-            document.getElementById("searchInput")
-            .value
-            .toLowerCase()
-            .trim();
-
-        const cards =
-            document.querySelectorAll(".card");
-
-        let found = 0;
-
-        cards.forEach(card => {
-
-            const text =
-                (
-                    card.innerText +
-                    " " +
-                    card.dataset.keywords
-                ).toLowerCase();
-
-            if (text.includes(input)) {
-
-                card.style.display = "block";
-                found++;
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-        /* 隱藏沒有結果的分類 */
-
-        document.querySelectorAll(".category").forEach(category => {
-
-            const visibleCards =
-                category.querySelectorAll(
-                    ".card[style='display: block;']"
-                );
-
-            if (input === "") {
-
-                category.style.display = "block";
-
-            } else if (visibleCards.length === 0) {
-
-                category.style.display = "none";
-
-            } else {
-
-                category.style.display = "block";
-
-            }
-
-        });
-
-        document.getElementById("noResult").style.display =
-            found === 0 ? "block" : "none";
-    }
+    const input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
 
 
-    /* =========================
-       最愛收藏
-    ========================= */
+    const cards =
+        document.querySelectorAll(".card");
 
-    function toggleFavorite(event, button) {
 
-        event.preventDefault();
-        event.stopPropagation();
+    const categories =
+        document.querySelectorAll(".category");
 
-        button.classList.toggle("active");
 
-        if (button.classList.contains("active")) {
+    let found = 0;
 
-            button.innerText = "★";
+
+    /* 搜尋每張卡片 */
+
+    cards.forEach(card => {
+
+        const text =
+            (
+                card.innerText +
+                " " +
+                card.dataset.keywords
+            ).toLowerCase();
+
+
+        if (
+            input === "" ||
+            text.includes(input)
+        ) {
+
+            card.style.display = "block";
+
+            found++;
 
         } else {
 
-            button.innerText = "☆";
+            card.style.display = "none";
 
         }
 
+    });
+
+
+    /* 判斷分類是否需要隱藏 */
+
+    categories.forEach(category => {
+
+        const visibleCards =
+            Array.from(
+                category.querySelectorAll(".card")
+            )
+            .filter(
+                card =>
+                    card.style.display !== "none"
+            );
+
+
+        if (input === "") {
+
+            category.style.display = "block";
+
+        }
+
+        else if (
+            visibleCards.length === 0
+        ) {
+
+            category.style.display = "none";
+
+        }
+
+        else {
+
+            category.style.display = "block";
+
+        }
+
+    });
+
+
+    /* 沒有搜尋結果 */
+
+    if (found === 0) {
+
+        document
+            .getElementById("noResult")
+            .style.display = "block";
+
     }
+
+    else {
+
+        document
+            .getElementById("noResult")
+            .style.display = "none";
+
+    }
+
+}
 
 </script>
 
+
 </body>
+
 </html>
 ```
